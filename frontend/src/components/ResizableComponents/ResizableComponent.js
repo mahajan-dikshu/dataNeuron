@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Resizable } from 're-resizable';
 import './ResizableComponent.css';
-
+const apiUrl = process.env.REACT_APP_API_DOMAIN;
 const ResizableComponent = ({ index, size, content, componentNumber, handleResize }) => {
   const resizeConfig = {
     top: true,
@@ -29,7 +29,7 @@ const ResizableComponent = ({ index, size, content, componentNumber, handleResiz
     if (newContent !== null) {
       const component_number = index + 1; // Component number is 1-based
       try {
-        const response = await fetch('http://localhost:4000/components/add', {
+        const response = await fetch(`${apiUrl}/components/add`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ const ResizableComponent = ({ index, size, content, componentNumber, handleResiz
     const updatedContent = prompt('Enter updated content:', content);
     if (updatedContent !== null) {
       try {
-        const response = await fetch(`http://localhost:4000/components/update/${componentNumber}`, {
+        const response = await fetch(`${apiUrl}/components/update/${componentNumber}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const ResizableComponent = ({ index, size, content, componentNumber, handleResiz
 
   const fetchCount = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/components/count/${componentNumber}`);
+      const response = await fetch(`${apiUrl}/components/count/${componentNumber}`);
       const data = await response.json();
       if (data.success) {
         const addCountData = data.data.find(entry => entry.operation_type === 'add');

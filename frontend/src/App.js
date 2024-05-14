@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import ResizableComponent from './components/ResizableComponents/ResizableComponent';
 import './App.css';
-
+const apiUrl = process.env.REACT_APP_API_DOMAIN;
 const App = () => {
   const [sizes, setSizes] = useState([
     { width: 300, height: 200 },
@@ -17,7 +17,7 @@ const App = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:4000/components/active');
+      const response = await fetch(`${apiUrl}/components/active`);
       const data = await response.json();
       console.log(data);
       if (data.success) {
