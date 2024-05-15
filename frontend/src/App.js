@@ -17,7 +17,7 @@ const App = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`${apiUrl}/components/active`);
+      const response = await fetch(`https://dataneuronbackend-sdcc.onrender.com/components/active`);
       const data = await response.json();
       console.log(data);
       if (data.success) {

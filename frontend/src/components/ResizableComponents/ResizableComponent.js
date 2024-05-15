@@ -30,7 +30,7 @@ const ResizableComponent = ({ index, size, content, componentNumber, handleResiz
     if (newContent !== null) {
       const component_number = index + 1; // Component number is 1-based
       try {
-        const response = await fetch(`${apiUrl}/components/add`, {
+        const response = await fetch(`https://dataneuronbackend-sdcc.onrender.com/components/add`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ const ResizableComponent = ({ index, size, content, componentNumber, handleResiz
     const updatedContent = prompt('Enter updated content:', content);
     if (updatedContent !== null) {
       try {
-        const response = await fetch(`${apiUrl}/components/update/${componentNumber}`, {
+        const response = await fetch(`https://dataneuronbackend-sdcc.onrender.com/components/update/${componentNumber}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ const ResizableComponent = ({ index, size, content, componentNumber, handleResiz
 
   const fetchCount = async () => {
     try {
-      const response = await fetch(`${apiUrl}/components/count/${componentNumber}`);
+      const response = await fetch(`https://dataneuronbackend-sdcc.onrender.com/components/count/${componentNumber}`);
       const data = await response.json();
       if (data.success) {
         const addCountData = data.data.find(entry => entry.operation_type === 'add');
