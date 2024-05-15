@@ -1,7 +1,7 @@
 // App.js
 import React, { useState, useEffect } from 'react';
 import ResizableComponent from './components/ResizableComponents/ResizableComponent';
-import './App.css';
+
 const apiUrl = process.env.REACT_APP_API_DOMAIN;
 const App = () => {
   const [sizes, setSizes] = useState([
@@ -11,6 +11,7 @@ const App = () => {
   ]);
   const [componentsData, setComponentsData] = useState([]);
 
+  
   useEffect(() => {
     fetchData();
   }, []);
@@ -40,7 +41,7 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <div>
       {componentsData.map((component, index) => (
         <ResizableComponent
           key={index}
